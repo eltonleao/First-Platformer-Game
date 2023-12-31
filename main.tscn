@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=3 uid="uid://do5sohlu5fjhh"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_knytt"]
+[ext_resource type="PackedScene" uid="uid://bywdqvx36bdcm" path="res://Player/BG.tscn" id="2_bq7bw"]
+[ext_resource type="Script" path="res://Hp.gd" id="4_hbeha"]
+
+[sub_resource type="GDScript" id="GDScript_kl5wv"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = 'Gold: ' + str(Game.Gold)
+"
+
+[sub_resource type="GDScript" id="GDScript_52x57"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = 'Frogs: ' + str(Game.Frogs)
+"
+
+[sub_resource type="GDScript" id="GDScript_ucjg7"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = 'Frog Vel: ' + str(Game.FrogVelocity)
+"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_knytt")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 394.0
+offset_top = 171.0
+offset_right = 683.0
+offset_bottom = 342.0
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 433.0
+offset_top = 380.0
+offset_right = 623.0
+offset_bottom = 511.0
+tooltip_text = "This is a quit button"
+text = "Reset values"
+
+[node name="ParallaxBackgroundBG" parent="." instance=ExtResource("2_bq7bw")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hp" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.018
+offset_left = 38.0
+offset_top = 19.0
+offset_right = 58.416
+offset_bottom = 30.336
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "HP: "
+script = ExtResource("4_hbeha")
+
+[node name="Gold" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.018
+offset_left = 38.0
+offset_top = 58.0
+offset_right = 81.416
+offset_bottom = 78.336
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "Gold: "
+script = SubResource("GDScript_kl5wv")
+
+[node name="Frogs" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.018
+offset_left = 38.0
+offset_top = 96.0
+offset_right = 90.416
+offset_bottom = 116.336
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "Frogs: "
+script = SubResource("GDScript_52x57")
+
+[node name="FrogsVelocity" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.018
+offset_left = 185.0
+offset_top = 20.0
+offset_right = 276.416
+offset_bottom = 40.336
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "Frogs Vel: "
+script = SubResource("GDScript_ucjg7")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 361.0
+offset_top = 92.0
+offset_right = 1234.0
+offset_bottom = 161.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Quantas cerejas vc consegue pegar?"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
